@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
+  namespace: webserver
 spec:
   selector:
     matchLabels:
@@ -21,10 +22,30 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web
+  namespace: webserver
 spec:
   selector:
     app: web
   ports:
   - port: 80
     targetPort: 5000
-  
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx-teste
+  namespace: webserver
+  labels:
+    name: ingress-nginx-teste
+spec:
+  rules:
+  - host: www.alanfmaia.com.br
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: web
+            port: 
+              number: 80
