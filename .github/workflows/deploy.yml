@@ -23,5 +23,5 @@ jobs:
 
       - name: Deploy to DigitalOcean Kubernetes
         run: |
-          doctl kubernetes cluster kubeconfig save <nome-do-seu-cluster>
+          doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
           kubectl apply -f ${{ inputs.manifests }} -n webserver
