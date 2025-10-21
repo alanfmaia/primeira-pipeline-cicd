@@ -8,9 +8,7 @@ on:
       images:
         type: string
         required: true
-      namespace:
-        type: string
-        required: true
+
       environment:
         type: string
         required: true
@@ -32,4 +30,4 @@ jobs:
       - name: Deploy to DigitalOcean Kubernetes
         run: |
           doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
-          kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.namespace }}
+          kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.environment }}
