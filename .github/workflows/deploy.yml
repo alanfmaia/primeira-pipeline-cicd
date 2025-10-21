@@ -8,10 +8,18 @@ on:
       images:
         type: string
         required: true
+      namespace:
+        type: string
+        required: true
+      environment:
+        type: string
+        required: true
+        description: "Nome do ambiente utilizado"
 
 jobs:
   deploy-k8s:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Obtendo o código
         uses: actions/checkout@v4.1.5
@@ -24,5 +32,4 @@ jobs:
       - name: Deploy to DigitalOcean Kubernetes
         run: |
           doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
-          kubectl create namespace webserver || echo "Namespace criado"
-          kubectl apply -f ${{ inputs.manifests }} -n webserver
+          kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.namespace }}
