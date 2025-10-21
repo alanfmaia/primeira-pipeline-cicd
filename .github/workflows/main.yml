@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Teste de Validação
         run: |
-          run: echo "Teste fake de ambiente ${{ vars.K8S_NAMESPACE }} "
+          echo "Teste fake de ambiente ${{ vars.K8S_NAMESPACE }} "
   CD-producao:
     needs: Teste-Ambiente
     uses: alanfmaia/primeira-pipeline-cicd/.github/workflows/deploy.yml@main
