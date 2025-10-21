@@ -24,4 +24,5 @@ jobs:
       - name: Deploy to DigitalOcean Kubernetes
         run: |
           doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
+          kubectl create namespace webserver || echo "Namespace criado"
           kubectl apply -f ${{ inputs.manifests }} -n webserver
