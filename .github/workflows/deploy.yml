@@ -32,4 +32,4 @@ jobs:
       - name: Deploy to DigitalOcean Kubernetes
         run: |
           doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
-          kubectl apply -f ${{ inputs.manifests }} -n ${{ vars.K8S_NAMESPACE }}
+          kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.namespace }}
