@@ -1,5 +1,5 @@
 name: CI
-run-name: "Executando CI/CD Pipeline $ {{ github.actor }} "
+run-name: "Executando CI/CD Pipeline ${{ github.actor }} "
 on:
   push:
   workflow_dispatch:
