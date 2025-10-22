@@ -5,7 +5,7 @@ on:
       manifests:
         type: string
         required: true
-      images:
+      image:
         type: string
         required: true
 
