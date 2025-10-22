@@ -32,3 +32,4 @@ jobs:
           doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
           kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.environment }}
           kubectl set image deployment/web web=${{ inputs.images }} -n ${{ inputs.environment }}
+          echo "Aplicação implantada com sucesso no ambiente ${{ inputs.environment }} e com a versao da imagem ${{ inputs.images }}"
