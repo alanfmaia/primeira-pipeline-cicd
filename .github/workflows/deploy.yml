@@ -5,7 +5,7 @@ on:
       manifests:
         type: string
         required: true
-      image:
+      images:
         type: string
         required: true
 
@@ -31,3 +31,4 @@ jobs:
         run: |
           doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
           kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.environment }}
+          kubectl set image deployment/web web=${{ inputs.images }} -n ${{ inputs.environment }}
