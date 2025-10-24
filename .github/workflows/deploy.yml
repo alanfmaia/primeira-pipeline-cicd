@@ -34,9 +34,18 @@ jobs:
           kubectl set image deployment/web web=${{ inputs.images }} -n ${{ inputs.environment }}
           echo "Aplicação implantada com sucesso no ambiente ${{ inputs.environment }} e com a versao da imagem ${{ inputs.images }}"
 
-      - name: Adicionando mensagem de login
+      - name: Adicionando mensagem de log
         run: |
           echo "::debug:: Mensagem de log Debug"
           echo "::warning:: Mensagem de log Warning"
           echo "::notice:: Mensagem de log Notice"
           echo "::error:: Mensagem de log Error excutado por ${{ github.actor }}"
+
+      - name: Adicionando agrupamento de logs
+        run: |
+          echo "Início do agrupamento de logs"
+          echo "::group::Grupo de Logs"
+          echo "Log 1"
+          echo "Log 2"
+          echo "::endgroup::"
+          echo "Fim do agrupamento de logs"
