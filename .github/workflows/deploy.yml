@@ -33,3 +33,10 @@ jobs:
           kubectl apply -f ${{ inputs.manifests }} -n ${{ inputs.environment }}
           kubectl set image deployment/web web=${{ inputs.images }} -n ${{ inputs.environment }}
           echo "Aplicação implantada com sucesso no ambiente ${{ inputs.environment }} e com a versao da imagem ${{ inputs.images }}"
+
+      - name: Adicionando mensagem de login
+        run: |
+          echo "::debug:: Mensagem de log Debug"
+          echo "::warning:: Mensagem de log Warning"
+          echo "::notice:: Mensagem de log Notice"
+          echo "::error:: Mensagem de log Error excutado por ${{ github.actor }}"
